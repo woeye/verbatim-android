@@ -2,10 +2,13 @@ package net.woeye.verbatim;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import net.woeye.verbatim.db.DatabaseHelper;
 import net.woeye.verbatim.fragment.OverviewFragment;
 
 public class MainActivity extends Activity {
@@ -30,5 +33,18 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_add_card:
+                Intent intent = new Intent(this, EditCardActivity.class);
+                intent.putExtra("newCard", true);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
