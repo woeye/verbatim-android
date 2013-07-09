@@ -11,8 +11,13 @@ public class Card {
     private Date lastTraining;
 
     public Card() {
+        setId(-1);
         setLevel(0);
         setCollectionId(0);
+    }
+
+    public boolean isNew() {
+        return (id == -1);
     }
 
     public long getId() { return id; }

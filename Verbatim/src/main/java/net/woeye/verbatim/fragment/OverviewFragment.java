@@ -2,8 +2,8 @@ package net.woeye.verbatim.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import net.woeye.verbatim.EditCardActivity;
 import net.woeye.verbatim.R;
 import net.woeye.verbatim.db.CardDAO;
 import net.woeye.verbatim.db.DatabaseHelper;
@@ -25,19 +24,6 @@ import java.util.List;
 public class OverviewFragment extends Fragment {
     private CardDAO cardDao;
     private CardAdapter cardAdapter;
-
-    static final String[] numbers = new String[] {
-            "Come stai?", "Non lo so", "C", "D", "E",
-            "F", "G", "H", "I", "J",
-            "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z",
-            "A", "B", "C", "D", "E",
-            "F", "G", "H", "I", "J",
-            "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z"
-    };
 
     public OverviewFragment() {
 
@@ -50,14 +36,6 @@ public class OverviewFragment extends Fragment {
         DatabaseHelper helper = new DatabaseHelper(activity);
         SQLiteDatabase db = helper.getWritableDatabase();
         this.cardDao = new CardDAO(db);
-
-        // TEST-CODE!
-        /*for (int i = 0; i<5; i++) {
-            Card c = new Card();
-            c.setFront("front " + i);
-            c.setBack("back " + i);
-            this.cardDao.insertCard(c);
-        }*/
     }
 
     @Override
@@ -65,18 +43,18 @@ public class OverviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         GridView gridView = (GridView)inflater.inflate(R.layout.overview_fragment, container, false);
 
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,
-                R.layout.card, numbers);
-        gridView.setAdapter(adapter);*/
-
         cardAdapter = new CardAdapter(getActivity(), this.cardDao);
         gridView.setAdapter(cardAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent intent = new Intent(getActivity(), EditCardActivity.class);
+                /*Intent intent = new Intent(getActivity(), EditCardActivity.class);
                 intent.putExtra("cardId", id);
-                startActivity(intent);
+                startActivity(intent);*/
+                FragmentManager fm = getFragmentManager();
+                EditCardFragment dialog = new EditCardFragment((Card)cardAdapter.getItem(position));
+                dialog.show(fm, "dialog");
+
             }
         });
 
@@ -122,9 +100,7 @@ public class OverviewFragment extends Fragment {
                 Context.LAYOUT_INFLATER_SERVICE
             );
 
-
             if (convertView == null) {
-                convertView = new TextView(this.ctx);
                 convertView = inflater.inflate(R.layout.card, null);
             }
 
