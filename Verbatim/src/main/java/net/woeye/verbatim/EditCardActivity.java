@@ -1,8 +1,7 @@
 package net.woeye.verbatim;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -11,7 +10,7 @@ import net.woeye.verbatim.db.CardDAO;
 import net.woeye.verbatim.db.DatabaseHelper;
 import net.woeye.verbatim.model.Card;
 
-public class EditCardActivity extends Activity {
+public class EditCardActivity extends ActionBarActivity {
     private CardDAO cardDao;
     private Card card = new Card();
     private boolean isNewCard = false;

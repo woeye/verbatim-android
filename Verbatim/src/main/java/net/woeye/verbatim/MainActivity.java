@@ -1,14 +1,14 @@
 package net.woeye.verbatim;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -21,7 +21,7 @@ import net.woeye.verbatim.model.Card;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements EditCardFragment.EditDialogListener {
+public class MainActivity extends ActionBarActivity implements EditCardFragment.EditDialogListener {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private CardDAO mCardDao;
@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements EditCardFragment.EditDialo
 
         mViewPager = (ViewPager)findViewById(R.id.pager);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
@@ -57,7 +57,7 @@ public class MainActivity extends Activity implements EditCardFragment.EditDialo
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         switch(item.getItemId()) {
             case R.id.action_add_card:
@@ -96,10 +96,10 @@ public class MainActivity extends Activity implements EditCardFragment.EditDialo
             }
         }
 
-        public TabsAdapter(Activity activity, ViewPager pager) {
-            super(activity.getFragmentManager());
+        public TabsAdapter(ActionBarActivity activity, ViewPager pager) {
+            super(activity.getSupportFragmentManager());
             mContext = activity;
-            mActionBar = activity.getActionBar();
+            mActionBar = activity.getSupportActionBar();
             mViewPager = pager;
             mViewPager.setAdapter(this);
             mViewPager.setOnPageChangeListener(this);
