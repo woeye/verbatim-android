@@ -3,9 +3,9 @@ package net.woeye.verbatim.fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -18,12 +18,13 @@ public class EditCardFragment extends DialogFragment {
     private Card mCard = null;
 
     public EditCardFragment() {
-        this(new Card());
+        //this(new Card());
+        mCard = new Card();
     }
 
-    public EditCardFragment(Card card) {
+    /*public EditCardFragment(Card card) {
         mCard = card;
-    }
+    }*/
 
     @Override
     public void onAttach(Activity activity) {

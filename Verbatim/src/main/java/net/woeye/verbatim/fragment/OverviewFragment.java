@@ -52,8 +52,8 @@ public class OverviewFragment extends Fragment {
                 intent.putExtra("cardId", id);
                 startActivity(intent);*/
                 FragmentManager fm = getFragmentManager();
-                EditCardFragment dialog = new EditCardFragment((Card)cardAdapter.getItem(position));
-                dialog.show(fm, "dialog");
+                //EditCardFragment dialog = new EditCardFragment((Card)cardAdapter.getItem(position));
+                //dialog.show(fm, "dialog");
 
             }
         });

@@ -1,0 +1,14 @@
+<resources>
+    <!--
+    <item name="primaryColor" type="color">#E30046</item>
+    <item name="primaryDarkColor" type="color">#C50441</item>
+    <item name="accentColor" type="color">#FFAB9F</item>
+    <item name="controlColor" type="color"></item>
+    -->
+
+    <item name="primaryColor" type="color">#225B8B</item>
+    <item name="primaryDarkColor" type="color">#184063</item>
+    <item name="accentColor" type="color">#55F6FF</item>
+    <item name="controlColor" type="color"></item>
+    <item name="whiteColor" type="color">#FFFFFF</item>
+</resources>
